@@ -34,7 +34,7 @@ export default async function scrapeDocumentation(firstUrl) {
   if (!mainDiv) {
     console.log("No suitable main content div found.");
     await browser.close();
-    return;
+    return ({ message: "No suitable main content div found." });
   }
 
   const scrapedContent = []; // the scraped content will be stored in this array
@@ -64,7 +64,7 @@ export default async function scrapeDocumentation(firstUrl) {
       scrapedContent.push({ url: page.url(), markdown: markdown });
     } else {
       console.log("Navigation did not occur. Stopping.");
-      break;
+      return ({ content: scrapedContent, message: "Navigation did not occur. Stopping." });
     }
   }
 

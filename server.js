@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/scrape", async (req, res) => {
-  console.log(req.body);
-  const { firstUrl } = req.body;
+  console.log(req.query.firstUrl);
+  const firstUrl = req.query.firstUrl;
   if (!firstUrl) {
     return res.status(400).json({ message: "Oi! Can't find the first URL!" });
   }
